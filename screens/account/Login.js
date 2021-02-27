@@ -12,7 +12,8 @@ export default function Login() {
                 source={require("../../assets/clipart-restaurant-restaurant-logo-2.png")}
                 resizeMode="contain"
                 style={styles.image}
-                ></Image>
+            >
+            </Image>
             <View style={styles.container}>
                 <Text>Login Form</Text>
                 <CreateAccount></CreateAccount>

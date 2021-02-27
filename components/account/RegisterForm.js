@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Button, Input } from 'react-native-elements'
+import { Button, Icon, Input } from 'react-native-elements'
+
 
 export default function RegisterForm() {
+
+    const [showPassword, setShowPassword] = useState(false)
+
     return (
         <View style={styles.form}>
             <Input
@@ -14,14 +18,32 @@ export default function RegisterForm() {
                 containerStyle={styles.input}
                 placeholder="Ingresa tu contraseña..."
                 password={true}
-                secureTextEntry={true}
+                secureTextEntry={!showPassword}
+                rightIcon={
+                    <Icon 
+                        type="material-community"
+                        name={ showPassword ? "eye-off-outline": "eye-outline"}
+                        iconStyle={styles.icon}
+                        onPress={() => setShowPassword(!showPassword)}
+                    >
+                    </Icon>
+                }
             >
             </Input>
             <Input
                 containerStyle={styles.input}
                 placeholder="confirma tu contraseña..."
                 password={true}
-                secureTextEntry={true}
+                secureTextEntry={!showPassword}
+                rightIcon={
+                    <Icon 
+                        type="material-community"
+                        name={ showPassword ? "eye-off-outline": "eye-outline"}
+                        iconStyle={styles.icon}
+                        onPress={() => setShowPassword(!showPassword)}
+                    >
+                    </Icon>
+                }
             >
             </Input>
             <Button
@@ -48,5 +70,8 @@ const styles = StyleSheet.create({
     },
     btn: {
         backgroundColor: "#e21e16"
+    },
+    icon: {
+        color: "#c1c1c1"
     }
 })
