@@ -5,6 +5,8 @@ import { Icon, ListItem } from 'react-native-elements'
 
 import Modal from '../Modal'
 import ChangeDisplayNameForm from './ChangeDisplayNameForm'
+import ChangeEmailForm from './ChangeEmailForm'
+import ChangePasswordForm from './ChangePasswordForm'
 
 export default function AccountOption({ user, toastRef, setReloadUser }) {
 
@@ -46,19 +48,33 @@ export default function AccountOption({ user, toastRef, setReloadUser }) {
             case "displayName":
                     setRenderComponent(
                         <ChangeDisplayNameForm
-                            displayName= {user.displayName}
-                            setShowModal= {setShowModal}
-                            toastRef= {toastRef}
-                            setReloadUser= {setReloadUser}
+                            displayName = {user.displayName}
+                            setShowModal = {setShowModal}
+                            toastRef = {toastRef}
+                            setReloadUser = {setReloadUser}
                         >
                         </ChangeDisplayNameForm>
                     )
                 break;
             case "displayEmail":
-                    setRenderComponent()
+                    setRenderComponent(
+                        <ChangeEmailForm
+                            email = {user.email}
+                            setShowModal = {setShowModal}
+                            toastRef = {toastRef}
+                            setReloadUser = {setReloadUser}
+                        >
+                        </ChangeEmailForm>
+                    )
                 break; 
             case "password":
-                setRenderComponent()
+                setRenderComponent(
+                    <ChangePasswordForm
+                        setShowModal = {setShowModal}
+                        toastRef = {toastRef}
+                    >
+                    </ChangePasswordForm>
+                )
             break;
             default:
                 break;

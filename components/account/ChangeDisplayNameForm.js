@@ -26,7 +26,7 @@ export default function ChangeDisplayNameForm({ displayName, setShowModal, toast
         }
 
         setReloadUser(true)
-        toastRef.current.show("Se an actulializado Nombre y Apellidos.", 2000)
+        toastRef.current.show("Se ha actulializado Nombre y Apellidos.", 2000)
         setShowModal(false)
     }
 
@@ -63,7 +63,7 @@ export default function ChangeDisplayNameForm({ displayName, setShowModal, toast
             >
             </Input>
             <Button
-                title="Cmbiar Nombres y Apellidos"
+                title="Cambiar Nombres y Apellidos"
                 containerStyle={styles.btnContainer}
                 buttonStyle={styles.btn}
                 onPress={onSumit}
