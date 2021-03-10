@@ -12,7 +12,7 @@ export default function ChangeDisplayNameForm({ displayName, setShowModal, toast
 
     const onSumit = async() => {
 
-        if(!validadForm) {
+        if(!validadForm()) {
             return
         }
 

@@ -22,7 +22,7 @@ export default function ChangePasswordForm( { setShowModal, toastRef } ) {
 
     const onSumit = async() => {
 
-        if(!validadForm) {
+        if(!validadForm()) {
             return
         }
 

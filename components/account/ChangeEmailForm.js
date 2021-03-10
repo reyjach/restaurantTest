@@ -18,7 +18,7 @@ export default function ChangeEmailForm({ email, setShowModal, toastRef, setRelo
 
     const onSumit = async() => {
 
-        if(!validadForm) {
+        if(!validadForm()) {
             return
         }
 
