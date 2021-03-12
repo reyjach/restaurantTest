@@ -14,11 +14,13 @@ export default function AppRestaurants({ navigation }) {
 
     return (
         <KeyboardAwareScrollView>
-            <AddRestaurantsForm toastRef={toastRef} setLoading={setLoading}></AddRestaurantsForm>
+            <AddRestaurantsForm toastRef={toastRef} setLoading={setLoading} navigation={navigation}></AddRestaurantsForm>
             <Loading isVisible={loading} text="Creando Restaurante"></Loading>
             <Toast ref={toastRef} position="center" opacity={0.9}></Toast>
         </KeyboardAwareScrollView>
     )
 }
+
+
 
 const styles = StyleSheet.create({})
