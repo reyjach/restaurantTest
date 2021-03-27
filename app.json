@@ -20,9 +20,15 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.orla.restaurants",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDBXyCv3P_NSrjkr71WwwPCUsQDO5kQ1CQ"
+        }
       },
       "permissions": [
         "CAMERA_ROLL",
