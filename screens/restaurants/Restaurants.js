@@ -6,7 +6,7 @@ import { useFocusEffect } from '@react-navigation/native'
 import { size } from 'lodash'
 
 import Loading from '../../components/Loading'
-import { getRestaurants } from '../../utils/action'
+import { getMoreRestaurants, getRestaurants } from '../../utils/action'
 import ListRestaurants from '../../components/restaurants/ListRestaurants'
  
 export default function Restaurants({ navigation }) {
@@ -40,6 +40,22 @@ export default function Restaurants({ navigation }) {
         }, [])
     )
 
+    const handleLoadMore = async() => {
+        if(!startRestaurant){
+            return
+        }
+
+        setLoading(true)
+
+        const response = await getMoreRestaurants(limitRestaurants, startRestaurant)
+                if (response.statusResponse) {
+                    setStartRestaurant(response.startRestaurant)
+                    setRestaurants([...restaurants, ...response.restaurants])
+                }
+
+        setLoading(false)
+    }
+
     if(user === null) {
         return <Loading isVisible={true} text="Cargando..."></Loading>
     }
@@ -48,7 +64,12 @@ export default function Restaurants({ navigation }) {
         <View style={styles.viewBody}>
             {
                 size(restaurants) > 0 ? (
-                    <ListRestaurants restaurants={restaurants} navigation={navigation}></ListRestaurants>
+                    <ListRestaurants 
+                        restaurants={restaurants} 
+                        navigation={navigation} 
+                        handleLoadMore={handleLoadMore}
+                    >
+                    </ListRestaurants>
                 ) : (
                     <View style={styles.notFoundView}>
                         <Text style={styles.notFoundText}>No hay restaurantes registrados.</Text>
