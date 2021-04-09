@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import { map } from 'lodash'
 import { Alert, Dimensions ,StyleSheet, Text, View, ScrollView } from 'react-native'
 import { Icon, ListItem, Rating } from 'react-native-elements'
@@ -8,6 +8,9 @@ import Loading from '../../components/Loading'
 import MapRestaurant from '../../components/restaurants/MapRestaurant'
 import { getDocumentById } from '../../utils/action'
 import { formatPhone } from '../../utils/helpers'
+import ListReview from '../../components/restaurants/ListReview'
+import { useFocusEffect } from '@react-navigation/native'
+
 
 const withScreen = Dimensions.get("window").width
 
@@ -18,19 +21,23 @@ export default function Restaurant({ navigation, route }) {
     const [restaurant, setRestaurant] = useState(null)
     const [activeSlide, setActiveSlide] = useState(0)
 
-    useEffect(() => {
-        (async() => {
-            const response = await getDocumentById("restaurants", id)
+    useFocusEffect(
+        useCallback(() => {
+            (async() => {
+                const response = await getDocumentById("restaurants", id)
+    
+                if (response.statusResponse) {
+                    setRestaurant(response.document)
+                } else {
+                    setRestaurant({})
+                    Alert.alert("Ocurrió un problema cargando el restaurante, intente más tarde.")
+                }
+    
+            })()
+        }, [])
+    )
 
-            if (response.statusResponse) {
-                setRestaurant(response.document)
-            } else {
-                setRestaurant({})
-                Alert.alert("Ocurrió un problema cargando el restaurante, intente más tarde.")
-            }
-
-        })()
-    }, [])
+    
 
     if(!restaurant) {
         return <Loading isVisible={true} text="cargando..."></Loading>
@@ -62,6 +69,10 @@ export default function Restaurant({ navigation, route }) {
                 phone={formatPhone(restaurant.callingCode, restaurant.phone)}
             >
             </RestaurantInfo>
+            <ListReview
+                navigation={navigation}
+                idRestaurant={restaurant.id}
+            />
         </ScrollView>
     )
 }
