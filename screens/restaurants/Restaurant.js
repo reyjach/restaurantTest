@@ -251,5 +251,5 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 100,
         padding: 5,
         paddingLeft: 15
-    }
+    },
 })
