@@ -182,6 +182,7 @@ function RestaurantInfo ({ name, location, address, email, phone }) {
                 height={150}
             >
             </MapRestaurant>
+            //go
             {
                 map(listInfo, (item, index) => (
                     <ListItem
